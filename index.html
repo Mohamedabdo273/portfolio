@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة المبيعات والمخزون - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --text: #333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-left: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 15px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--light);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f8f9fa"/><path d="M0 0 L100 100" stroke="%23e9ecef" stroke-width="2"/><path d="M100 0 L0 100" stroke="%23e9ecef" stroke-width="2"/></svg>');
+            background-size: cover;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--dark);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            font-size: 2.2rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Screenshot Section */
+        .screenshots {
+            padding: 4rem 0;
+            background-color: var(--light);
+        }
+        
+        .screenshot-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            scrollbar-width: thin;
+        }
+        
+        .screenshot {
+            min-width: 300px;
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: linear-gradient(45deg, #3498db, #2c3e50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .social-links {
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-store"></i>
+                    <span>نظام الإدارة المتكامل</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features">المميزات</a></li>
+                    <li><a href="#screenshots">واجهات النظام</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>نظام متكامل لإدارة أعمالك</h1>
+            <p>إدارة المبيعات، المخزون، العملاء، الفواتير، والتقارير في نظام واحد سهل الاستخدام وباللغة العربية</p>
+            <a href="#features" class="btn">اكتشف الميزات</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">وحدات النظام الرئيسية</h2>
+            <div class="features-grid">
+                <!-- Product Management -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <h3>إدارة المنتجات والمخزون</h3>
+                    <ul>
+                        <li>إضافة وتعديل وحذف الأصناف</li>
+                        <li>متابعة الكميات المتوفرة في المخزون</li>
+                        <li>تنبيهات عند قرب انتهاء صنف أو نفاده</li>
+                        <li>استيراد وتصدير الأصناف من وإلى Excel</li>
+                    </ul>
+                </div>
+
+                <!-- Sales -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cash-register"></i>
+                    </div>
+                    <h3>المبيعات والفواتير</h3>
+                    <ul>
+                        <li>إنشاء فاتورة بيع مباشرة للعميل (كاش أو تقسيط)</li>
+                        <li>تطبيق خصومات وضرائب على الفواتير</li>
+                        <li>متابعة المبيعات اليومية/الشهرية</li>
+                        <li>طباعة الفواتير أو حفظها كـ PDF/Excel</li>
+                    </ul>
+                </div>
+
+                <!-- Installments -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>نظام الأقساط</h3>
+                    <ul>
+                        <li>تسجيل خطة تقسيط للعميل</li>
+                        <li>إنشاء جدول تلقائي للأقساط بمواعيد الاستحقاق</li>
+                        <li>متابعة حالة كل قسط (مدفوع / متأخر / متبقي)</li>
+                        <li>تنبيهات عند وجود أقساط متأخرة</li>
+                    </ul>
+                </div>
+
+                <!-- Customers -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>إدارة العملاء</h3>
+                    <ul>
+                        <li>إدارة بيانات العملاء (الاسم - رقم الموبايل - العنوان)</li>
+                        <li>ربط العميل بالمبيعات الخاصة به</li>
+                        <li>متابعة سجل المدفوعات والديون</li>
+                        <li>تقسيم العملاء حسب المنطقة أو نوع النشاط</li>
+                    </ul>
+                </div>
+
+                <!-- Reports -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>التقارير الشاملة</h3>
+                    <ul>
+                        <li>تقرير إجمالي المبيعات اليومية/الأسبوعية/الشهرية</li>
+                        <li>تقرير الأرباح وصافي الربح</li>
+                        <li>تقرير حركة الأصناف (الأكثر والأقل مبيعاً)</li>
+                        <li>تقرير الذمم المدينة (أرصدة العملاء المتبقية)</li>
+                    </ul>
+                </div>
+
+                <!-- Additional Features -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>مميزات إضافية</h3>
+                    <ul>
+                        <li>واجهة بسيطة وسهلة الاستخدام</li>
+                        <li>دعم اللغة العربية بالكامل</li>
+                        <li>إمكانية ربط النظام بأكثر من فرع</li>
+                        <li>نظام صلاحيات للمستخدمين</li>
+                        <li>استيراد وتصدير البيانات من وإلى Excel</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Section -->
+    <section class="screenshots" id="screenshots">
+        <div class="container">
+            <h2 class="section-title">واجهات النظام</h2>
+            <div class="screenshot-container">
+                <div class="screenshot">واجهة إدارة المنتجات</div>
+                <div class="screenshot">واجهة المبيعات والفواتير</div>
+                <div class="screenshot">واجهة إدارة العملاء</div>
+                <div class="screenshot">واجهة التقارير</div>
+                <div class="screenshot">واجهة نظام الأقساط</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <h3>نظام الإدارة المتكامل</h3>
+                <p>الحل الأمثل لإدارة أعمالك وتطوير تجارتك</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p>info@example.com | +972 123 456 789</p>
+                <p>جميع الحقوق محفوظة &copy; 2023</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
